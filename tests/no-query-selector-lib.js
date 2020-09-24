@@ -1,7 +1,6 @@
 const rule = require('../lib/rules/no-query-selector-lib')
 const RuleTester = require('eslint').RuleTester
-
-const ruleTester = new RuleTester()
+const ruleTester = new RuleTester({parser: require.resolve('@typescript-eslint/parser')})
 
 ruleTester.run('no-query-selector-lib', rule, {
   valid: [

@@ -27,7 +27,7 @@ ruleTester.run('no-query-selector-lib', rule, {
     },
     {
       code: 'query(document, "foo")',
-      output: 'document.querySelector( "foo")',
+      output: 'document.querySelector( "foo")!',
       errors: [
         {
           message: '@github/query-selector is deprecated',
@@ -37,7 +37,7 @@ ruleTester.run('no-query-selector-lib', rule, {
     },
     {
       code: 'query(document, "foo", HTMLFooElement)',
-      output: 'document.querySelector<HTMLFooElement>( "foo" )',
+      output: 'document.querySelector<HTMLFooElement>( "foo" )!',
       errors: [
         {
           message: '@github/query-selector is deprecated',
@@ -47,7 +47,7 @@ ruleTester.run('no-query-selector-lib', rule, {
     },
     {
       code: 'closest(document, "foo", HTMLFooElement)',
-      output: 'document.closest<HTMLFooElement>( "foo" )',
+      output: 'document.closest<HTMLFooElement>( "foo" )!',
       errors: [
         {
           message: '@github/query-selector is deprecated',
@@ -67,7 +67,7 @@ ruleTester.run('no-query-selector-lib', rule, {
     },
     {
       code: 'namedItem(form, "foo", HTMLFooElement)',
-      output: 'form.elements.namedItem<HTMLFooElement>( "foo" )',
+      output: 'form.elements.namedItem<HTMLFooElement>( "foo" )!',
       errors: [
         {
           message: '@github/query-selector is deprecated',
@@ -77,12 +77,13 @@ ruleTester.run('no-query-selector-lib', rule, {
     },
     {
       code: 'getAttribute(form, "foo")',
+      output: 'form.getAttribute( "foo")!',
       errors: [
         {
           message: '@github/query-selector is deprecated',
           type: 'CallExpression'
         }
       ]
-    },
+    }
   ]
 })

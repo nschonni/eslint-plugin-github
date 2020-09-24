@@ -57,6 +57,16 @@ ruleTester.run('no-query-selector-lib', rule, {
       ]
     },
     {
+      code: 'closest(event.currentTarget, "foo")',
+      output: 'event.currentTarget.closest( "foo")',
+      errors: [
+        {
+          message: '@github/query-selector is deprecated',
+          type: 'CallExpression'
+        }
+      ]
+    },
+    {
       code: 'namedItem(form, "foo", HTMLFooElement)',
       output: 'form.elements.namedItem<HTMLFooElement>( "foo" )',
       errors: [

@@ -12,9 +12,22 @@ ruleTester.run('no-query-selector-lib', rule, {
     },
     {
       code: 'el.getAttribute("foo")'
+    },
+    {
+      code: 'import {something} from "@github/something"'
     }
   ],
   invalid: [
+    {
+      code: 'import {something} from "@github/query-selector"',
+      output: '',
+      errors: [
+        {
+          message: '@github/query-selector is deprecated',
+          type: 'ImportDeclaration'
+        }
+      ]
+    },
     {
       code: 'querySelectorAll(document, "foo")',
       output: 'document.querySelectorAll( "foo")',
